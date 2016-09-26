@@ -26,13 +26,20 @@
  **/
 bool isUnique(std::string & str) {
   const int  NUM_ASCII_CHAR = 128;
+
+  /* If the length of the string is more than NUM_ASCII_CHAR, then
+   * the string must have an ASCII character that repeats.
+   */
+  if (str.length() > NUM_ASCII_CHAR) {
+    return false;
+  }
   bool dupCheckMap[NUM_ASCII_CHAR] = { false };
   for (char & c : str) {
-    int index = c % NUM_ASCII_CHAR;
-    if(dupCheckMap[index] == true) {
+    // NOTE: A char in c++ has value <= NUM_ASCII_CHAR
+    if(dupCheckMap[c] == true) {
       return false;
     }
-    dupCheckMap[index] = true;
+    dupCheckMap[c] = true;
   }
   return true;
 }
