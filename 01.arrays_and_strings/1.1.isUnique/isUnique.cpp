@@ -22,7 +22,7 @@
  * Assumptions: String contains Standard ASCII characters, and uppercase
  * characters are not equivalent to their lowercase counterpart.
  *
- * s : string
+ * str : string
  **/
 bool isUnique(std::string & str) {
   const int  NUM_ASCII_CHAR = 128;
