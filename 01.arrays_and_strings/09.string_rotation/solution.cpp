@@ -38,3 +38,9 @@ bool is_rotation(string a, string b) {
 }
 
 // END 9:50
+
+// Textbook solution
+bool is_rotation_better(string& a, string& b) {
+  string c = a + b;
+  return is_substring(c, b);
+}
