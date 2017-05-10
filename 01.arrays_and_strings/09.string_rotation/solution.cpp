@@ -42,5 +42,5 @@ bool is_rotation(string a, string b) {
 // Textbook solution
 bool is_rotation_better(string& a, string& b) {
   string c = a + b;
-  return is_substring(c, b);
+  return is_substring(c, 0, c.length(), b);
 }
