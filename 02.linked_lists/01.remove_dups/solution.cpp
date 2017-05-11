@@ -8,6 +8,8 @@ struct Node {
   Node* next;
 };
 
+// Complexity O(n)
+// Space O(n)
 void remove_dup(Node* list) {
   if (list == NULL) {
     return;
