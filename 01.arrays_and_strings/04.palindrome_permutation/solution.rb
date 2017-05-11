@@ -1,28 +1,16 @@
 #!/usr/bin/env ruby
 
-line = gets
+# line = gets
 
-char_map = {}
+m = Hash.new(0)
+count=0
 
-
-line.downcase.gsub(/\s+/, '').chars.each do |c|
-  if char_map[c]
-    char_map[c] += 1
-  else
-    char_map[c] = 1
-  end
+gets.downcase.gsub(/\s+/, '').chars.each do |c| 
+  m[c] += 1
 end
 
-counter = 0
-
-char_map.each do |k, v|
-  if v.odd?
-    counter += 1
-  end
+m.each do |_,v|
+  v.odd? and count += 1
 end
 
-if counter == 1 or counter == 0
-  puts "pal perm!"
-else
-  puts "not pal perm!"
-end
+puts "palindrome permutation!" if count == 1 or count == 0

@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 // Uses a std::map
 // Complexity O(n)
 bool is_unique(const string& str) {
