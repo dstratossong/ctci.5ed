@@ -35,8 +35,20 @@ bool is_intersect(Node* list1, Node* list2) {
   while (list2 != NULL) {
     if (discovered.find(list2) != discovered.end())
       return true;
-    discovered[list2] = true;
+    // discovered[list2] = true;
     list2 = list2->next;
+  }
+  return false;
+}
+
+bool is_cyclic(Node* list) {
+  map<Node*, bool> discovered;
+
+  while (list != NULL) {
+    if (discovered.find(list) != discovered.end())
+      return true;
+    discovered[list] = true;
+    list = list->next;
   }
   return false;
 }
@@ -51,6 +63,8 @@ int main() {
   Node* p = new Node(6);
   Node* q = new Node(7);
   Node* r = new Node(8);
+  Node* f = new Node(9);
+  Node* g = new Node(0);
 
   // connect
   x->next = y;
@@ -61,12 +75,17 @@ int main() {
   p->next = q;
   q->next = r;
   //r->next = m;
+
+  f->next = g;
+  g->next = f;
   
 
   // print
   print(p);
   print(x);
   cout << "is_intersect: " << is_intersect(p, x) << endl;
+  cout << "is_cyclic: " << is_cyclic(p) << endl;
+  cout << "is_cyclic: " << is_cyclic(f) << endl;
 
   // delete
   delete x;
@@ -77,6 +96,8 @@ int main() {
   delete p;
   delete q;
   delete r;
+  delete f;
+  delete g;
 
   return 0;
 }
