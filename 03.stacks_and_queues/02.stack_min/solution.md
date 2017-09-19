@@ -1,0 +1,5 @@
+**How would you design a stack which, in addition to `push` and `pop`, has a function `min` which returns the minimum element?**
+
+While we keep a global `min` pointer to the least element, each element in the stack has another field named `prev_min` which points to the previous minimum of the stack, if this element is a new minimum (and `NULL` otherwise). `push` needs to compare the new element with the minimum and update `min` and `prev_min`, which is still O(1). `pop` needs to check whether `prev_min` is populated in the popped element (or check if `min` points to the popped element), and set `min` to `prev_min`, which is also still O(1). Finally, `min` is O(1) because it just returns the `min` pointer.
+
+The key here is that we do not necessarily need to keep a full sorted array of elements (which also wouldn't be O(1) anymore). The reason is that since this is a stack, the `prev_min` will never be popped before the `min`, so we only need to update once when we `pop`, instead of searching for the new minimum.  
