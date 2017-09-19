@@ -23,11 +23,27 @@ class List {
       }
     }
 
+    void each(void (*f)(T)) {
+      Node<T>* curr = this->head;
+      while (curr != NULL) {
+        f(curr->value);
+        curr = curr->next;
+      }
+    }
+
     List* print() {
       std::cout << "[";
       this->print_recur(this->head);
       std::cout << "]" << std::endl;
       
+      return this;
+    }
+
+    List* print(void (*f)(T)) {
+      std::cout << "[" << std::endl;
+      this->print_recur(this->head, f);
+      std::cout << "]" << std::endl;
+
       return this;
     }
 
@@ -38,12 +54,34 @@ class List {
         this->tail = new_node;
       } else {
         this->tail->next = new_node;
+        new_node->prev = this->tail;
         this->tail = new_node;
       }
       this->length++;
 
       return this;
     }
+
+    T pop_r() {
+      if (this->tail == NULL) throw 0;
+
+      Node<T>* last = this->tail;
+      T popped = last->value;
+
+      this->tail = this->tail->prev;
+      delete last;
+      this->tail->next = NULL;
+      this->length--;
+
+      return popped;
+    }
+
+    T last() {
+      if (this->tail == NULL) throw 0;
+
+      return this->tail->value;
+    }
+
 
   private:
     int length;
@@ -57,6 +95,14 @@ class List {
         std::cout << " ";
         print_recur(node->next);
       }
+    }
+
+    void print_recur(Node<T>* node, void (*f)(T)) {
+      if (node == NULL) return;
+      std::cout << "  ";
+      f(node->value);
+      std::cout << std::endl;
+      print_recur(node->next, f);
     }
 
     // Might cause a stack overflow if list is too long
