@@ -70,7 +70,7 @@ class List {
 
       this->tail = this->tail->prev;
       delete last;
-      this->tail->next = NULL;
+      if (this->tail != NULL) this->tail->next = NULL;
       this->length--;
 
       return popped;
@@ -80,6 +80,10 @@ class List {
       if (this->tail == NULL) throw 0;
 
       return this->tail->value;
+    }
+
+    int size() const {
+      return this->length;
     }
 
 
