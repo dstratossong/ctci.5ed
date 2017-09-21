@@ -12,6 +12,10 @@ void test_int() {
   list->push_r(7);
   list->print();
 
+  list->push_l(2);
+  list->push_l(1);
+  list->print();
+
   list->pop_r();
   list->print();
 

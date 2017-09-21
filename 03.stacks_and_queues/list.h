@@ -47,6 +47,21 @@ class List {
       return this;
     }
 
+    List* push_l(T element) {
+      Node<T>* new_node = new Node<T>(element);
+      if (this->length == 0) {
+        this->head = new_node;
+        this->tail = new_node;
+      } else {
+        this->head->prev = new_node;
+        new_node->next = this->head;
+        this->head = new_node;
+      }
+      this->length++;
+
+      return this;
+    }
+
     List* push_r(T element) {
       Node<T>* new_node = new Node<T>(element);
       if (this->length == 0) {
@@ -62,8 +77,22 @@ class List {
       return this;
     }
 
+    T pop_l() {
+      if (this->head == NULL) throw "empty";
+
+      Node<T>* first = this->head;
+      T popped = first->value;
+
+      this->head = this->head->next;
+      delete first;
+      if (this->head != NULL) this->head->prev = NULL;
+      this->length--;
+
+      return popped;
+    }
+
     T pop_r() {
-      if (this->tail == NULL) throw 0;
+      if (this->tail == NULL) throw "empty";
 
       Node<T>* last = this->tail;
       T popped = last->value;
@@ -76,8 +105,14 @@ class List {
       return popped;
     }
 
+    T first() {
+      if (this->head == NULL) throw "empty";
+
+      return this->head->value;
+    }
+
     T last() {
-      if (this->tail == NULL) throw 0;
+      if (this->tail == NULL) throw "empty";
 
       return this->tail->value;
     }
