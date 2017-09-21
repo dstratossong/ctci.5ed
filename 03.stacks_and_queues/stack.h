@@ -27,8 +27,12 @@ class LinkedStack {
       return this->list->pop_r();
     }
 
-    T seek() {
+    T peek() {
       return this->list->last();
+    }
+
+    void print() {
+      this->list->print();
     }
 
     bool is_empty() {
