@@ -115,7 +115,7 @@ func Make(size int) *Tree {
   return tree
 }
 
-func MakeBinary(size int) *BinaryTreeNode {
+func MakeBST(size int) *BinaryTreeNode {
   if (size <= 0) {
     return nil
   }
@@ -164,7 +164,7 @@ func main() {
   t := Make(5)
   PrintTraversal(t.DFS)
 
-  bt := MakeBinary(10)
+  bt := MakeBST(10)
   dfsp(bt)
   PrintTraversal(bt.DFS)
 }
